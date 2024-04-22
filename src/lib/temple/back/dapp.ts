@@ -190,6 +190,7 @@ const handleIntercomRequest = async (
   if (confirmReq?.type === TempleMessageType.DAppOpsConfirmationRequest && confirmReq?.id === id) {
     if (confirmReq.confirmed) {
       try {
+        console.log('[BACK/DAPP]: handleIntercomRequest');
         const op = await withUnlocked(({ vault }) =>
           vault.sendOperations(
             dApp.pkh,

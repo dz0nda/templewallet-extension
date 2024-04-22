@@ -37,6 +37,8 @@ const processRequestWithErrorsLogged = (...args: Parameters<typeof processReques
   });
 
 const processRequest = async (req: TempleRequest, port: Runtime.Port): Promise<TempleResponse | void> => {
+  console.log('[BACK/MAIN]: processRequest: req: ', req);
+
   switch (req?.type) {
     case TempleMessageType.SendTrackEventRequest:
       await Analytics.trackEvent(req);

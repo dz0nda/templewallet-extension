@@ -522,13 +522,18 @@ export class Vault {
         tezos.setSignerProvider(signer);
         tezos.setForgerProvider(new CompositeForger([tezos.getFactory(RpcForger)(), localForger]));
         tezos.setPackerProvider(michelEncoder);
-        return tezos.contract.batch(opParams.map(formatOpParamsBeforeSend));
+        console.log('[BACK/VAULT]: sendOperations: opParams: ', opParams);
+        const batch = tezos.contract.batch(opParams.map(formatOpParamsBeforeSend));
+        return batch;
       });
 
       try {
-        return await batch.send();
+        console.log('[BACK/VAULT]: sendOperations: batch: ', batch);
+        const res = await batch.send();
+        console.log('OK!', res);
+        return res;
       } catch (err: any) {
-        console.error(err);
+        console.log('[BACK/VAULT]: sendOperations: Error: ', err);
 
         switch (true) {
           case err instanceof PublicError:
