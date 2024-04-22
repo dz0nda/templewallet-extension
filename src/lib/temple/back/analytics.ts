@@ -20,17 +20,17 @@ export const trackEvent = async ({
 }: Omit<TempleSendTrackEventRequest, 'type'>) => {
   const chainId = rpc && (await loadChainId(rpc));
 
-  client.track(`${category} ${event}`, {
-    userId,
-    event: `${category} ${event}`,
-    timestamp: new Date(),
-    properties: {
-      ...properties,
-      event,
-      category,
-      chainId
-    }
-  });
+  // client.track(`${category} ${event}`, {
+  //   userId,
+  //   event: `${category} ${event}`,
+  //   timestamp: new Date(),
+  //   properties: {
+  //     ...properties,
+  //     event,
+  //     category,
+  //     chainId
+  //   }
+  // });
 };
 
 export const pageEvent = async ({
@@ -43,18 +43,18 @@ export const pageEvent = async ({
   const url = `${path}${search}`;
   const chainId = rpc && (await loadChainId(rpc));
 
-  client.track('AnalyticsEventCategory.PageOpened', {
-    userId,
-    name: path,
-    timestamp: new Date(),
-    category: 'AnalyticsEventCategory.PageOpened',
-    properties: {
-      url,
-      path: search,
-      referrer: path,
-      category: 'AnalyticsEventCategory.PageOpened',
-      chainId,
-      ...additionalProperties
-    }
-  });
+  // client.track('AnalyticsEventCategory.PageOpened', {
+  //   userId,
+  //   name: path,
+  //   timestamp: new Date(),
+  //   category: 'AnalyticsEventCategory.PageOpened',
+  //   properties: {
+  //     url,
+  //     path: search,
+  //     referrer: path,
+  //     category: 'AnalyticsEventCategory.PageOpened',
+  //     chainId,
+  //     ...additionalProperties
+  //   }
+  // });
 };
